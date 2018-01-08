@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+int n,original[1002],temporal[1002],contador[1002],aux,maxi;
+int main ()
+{
+    ///creado por Joseph Ageless
+    cin>>n;
+    for(int c=0; c<n; c++)
+    {
+        cin>>original[c];
+        temporal[c]=original[c];
+        contador[original[c]]++;
+        maxi=max(maxi,original[c]);
+    }
+    //realizamos el barrido del contador
+    for(int d=1; d<=maxi; d++)
+    {
+        contador[d]=contador[d]+contador[d-1];
+    }
+    ///inicializamos nuestro algoritmo de ordenamiento
+    for(int f=n-1; f>=0; f--)
+    {
+        aux=temporal[f];
+        original[contador[aux]-1]=aux;
+        contador[aux]--;
+
+    }
+    //imprimimos el arreglo original ya ordenado
+    for(int i=0; i<n; i++)
+        cout<<original[i]<<" ";
+}
